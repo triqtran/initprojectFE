@@ -1,0 +1,11 @@
+@mixin footer-break-line() {
+    &:after {
+        content: ' ';
+        display: block;
+        border-bottom: solid 2px rgba(160, 160, 160, 0.25);
+        width: 930px;
+        margin: 0 auto;
+        position: relative;
+        top: 30px;
+    }
+}

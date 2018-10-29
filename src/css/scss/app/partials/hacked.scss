@@ -1,0 +1,19 @@
+/*------------------------------------------------------------------
+[. For Hack Browser]
+-------------------------------------------------------------------*/
+
+
+// Hack IE only
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    /* IE only override */
+}
+
+// Hack Safari only
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    /* Safari only override */
+    ::i-block-chrome, .brand {
+        
+    }
+}

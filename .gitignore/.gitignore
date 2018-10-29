@@ -1,1 +1,3 @@
-init
+node_modules/
+dest/
+

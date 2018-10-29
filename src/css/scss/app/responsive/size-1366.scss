@@ -1,0 +1,91 @@
+$mini-player-container-box-width: 424px;
+$mini-player-container-box-height: 410px;
+$mini-player-normal-font-size: 18px;
+$mini-player-small-font-size: 16px;
+
+@media (max-width: 1366px) {
+    .w-zingmp3 {
+        .z-mini-player {
+            .z-media-info {
+                width: 29%;
+            }
+            .z-list-media,
+            .z-lyric {
+                width: $mini-player-container-box-width;
+                height: $mini-player-container-box-height;
+                a {
+                    i {
+                        font-size: $mini-player-small-font-size;
+                    }
+                }
+                .z-lyric-content {
+                    .lyric {
+                        .content,
+                        .title {
+                            font-size: $mini-player-normal-font-size;
+                        }
+                    }
+                }
+                .z-btn-control {
+                    .z-btn-close {
+                        right: 23px;
+                    }
+                }
+            }
+            .z-list-media {
+                .z-select-all {
+                    width: 90%;
+                    left: 24px;
+                }
+                .z-list-content {
+                    height: 80%;
+                    .media-item {
+                        padding: 4px 0 4px 24px;
+                        .card-40 {
+                            .thumb-40 {
+                                .icon {
+                                    margin: -8px 0 0 -8px;
+                                }
+                            }
+                            .extension {
+                                right: 20px;
+                            }
+                        } 
+                    }
+                    .z-list-items {
+                        .list-info-mw-400 {
+                            .z-card {
+                                .card-info {
+                                    max-width: 300px;
+                                }
+                            }
+
+                            li {
+                                &:hover {
+                                    .z-card {
+                                        .card-info {
+                                            max-width: 160px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        .z-suggest {
+                           font-size: $mini-player-normal-font-size; 
+                        }
+                        .z-btn-features {
+                            right: 0;
+                        }
+                    }
+                }
+            }
+            .z-miniplayer-ads {
+                .ads-btn-close {
+                    .icon {
+                        font-size: $mini-player-small-font-size;
+                    }
+                }
+            }
+        }
+    }
+}

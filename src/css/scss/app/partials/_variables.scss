@@ -1,0 +1,63 @@
+$font-color-ui-base-1: #FCFCFC;
+$font-color-ui-base-2: #F7F7F7;
+$font-color-ui-base-3: #A0A0A0;
+$font-color-ui-base-4: #211345;
+$font-color-ui-base-5: #65509E;
+$font-color-ui-base-6: #2a2b3f;
+$font-color-ui-base-7: #f8e71c;
+$font-color-ui-base-8: #E35050;
+$font-color-ui-base-9: #4a90e2;
+$font-color-ui-base-10: #50e3c2;
+$font-color-ui-base-11: #1DC186;
+$font-color-ui-base-12: #E4340D;
+
+$background-color-base-1: #FCFCFC;
+$background-color-base-2: #F7F7F7;
+$background-color-base-3: #09070D;
+$background-color-base-4: #65509E;
+$background-color-base-5: #f8e71c;
+$background-color-base-6: #efefef;
+$background-color-base-7: #ff253f;
+$background-color-base-8: #e5e5e5;
+
+$sub-page-background-color: #f3f3f3;
+
+$mini-player-background-color-base-1: #1d1924;
+$mini-player-background-color-base-2: #555555;
+$background-color-gradient-from: #F1F3F5;
+$background-color-gradient-to: rgba(255, 255, 255, 0.5);
+
+$h1-font-size: 30px;
+$h2-font-size: 24px;
+$h3-font-size: 18px;
+$h4-font-size: 16px;
+$normal-text-font-size: 14px;
+$small-text-font-size: 12px;
+$font-size: $normal-text-font-size;
+
+$icon-font-size-18: 18px;
+$icon-font-size-16: 16px;
+
+$ratio: 1.5;
+$font-base : Roboto;
+$container-width: 1024px;
+$main-menu-bar-height: 54px;
+
+$line-height: $font-size * $ratio;
+$transition-fade-in: all .2s cubic-bezier(0.2, 1, 0.3, 1);
+$transition-scroll-ease-in-out: all .2s ease-in-out;
+$transition-scale-ease-in-out: all .2s ease-in-out;
+$transition-card-40: opacity 0.5s, transform 0.5s;
+
+$big-card-size: 210px;
+
+/* --- mini player variables --- */
+$min-width-mini-player: 1024px;
+$min-height-mini-player: 60px;
+$width-media-component: 310px;
+/* --- end --- */
+
+/* ---- GIF ICON ---- */
+$IMAGE_PLAYING_ICON_GIF_PURPLE: '../images/icon_playing_purple.gif';
+$IMAGE_PLAYING_ICON_GIF_WHITE: '../images/icon_playing_white.gif';
+/* ---- end ---- */

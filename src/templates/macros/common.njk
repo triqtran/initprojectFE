@@ -1,0 +1,603 @@
+{% import './menus.njk' as menuFn %}
+{% import './cards/card_song.njk' as cardSongs %}
+
+{%
+    set commentSampleData = [
+        {
+            avatarUrl: './images/oval-2-copy.jpg',
+            fullName: 'Đoàn Tất Duy',
+            commentedTime: '2 tuần trước',
+            content: 'I was so early that I hardly had any words to comment on this video. All I can say is, You are a Legend, Alan Walker :)﻿',
+            liked: '783',
+            replyNum: 42,
+            openReplyForm: false,
+            viewReply: true,
+            replyData: [
+                {
+                    avatarUrl: './images/oval-2-copy.jpg',
+                    fullName: 'Alec Chambers Music',
+                    commentedTime: '1phút trước',
+                    content: 'I was so early that I hardly had any words to comment on this video. All I can say is, You are a Legend, Alan Walker :)﻿',
+                    liked: '785',
+                    replyNum: 0,
+                    viewReply: false,
+                    openReplyForm: true,
+                    replyData: []
+                },
+                {
+                    avatarUrl: './images/oval-2-copy.jpg',
+                    fullName: 'Alec Chambers Music',
+                    commentedTime: '1phút trước',
+                    content: 'I was so early that I hardly had any words to comment on this video. All I can say is, You are a Legend, Alan Walker :)﻿',
+                    liked: '785',
+                    replyNum: 0,
+                    viewReply: false,
+                    openReplyForm: false,
+                    replyData: []
+                }
+            ]
+        },
+        {
+            avatarUrl: './images/oval-2-copy.jpg',
+            fullName: 'Alec Chambers Music',
+            commentedTime: '1phút trước',
+            content: 'I was so early that I hardly had any words to comment on this video. All I can say is, You are a Legend, Alan Walker :)﻿',
+            liked: '785',
+            replyNum: 2,
+            viewReply: false,
+            openReplyForm: true,
+            replyData: []
+        }
+    ]
+%}
+
+{% macro commentList(commentData=commentSampleData) %}
+<ul class="list-comment">
+    {% for item in commentData %}
+    <li class="comment-item">
+        <a href="#" target="_blank" rel="nofollow" class="medium-circle-card comment-avatar">
+            <img src="{{item.avatarUrl}}" alt="" />
+        </a>
+        <div class="post-comment">
+            <a href="#" class="username">
+                {{item.fullName}}
+                <span class="reply-ago-time">{{item.commentedTime}}</span>
+            </a>
+            <p class="content">
+                {{item.content}}
+            </p>
+            <div class="func-comment">
+                <a href="javascript:void(0)">
+                    <i class="icon ic-like-other"></i>{{subItem.liked}}
+                </a>
+                <a href="javascript:void(0)">
+                    <i class="icon ic-dislike-other"></i>0
+                </a>
+                <a href="#" class="reply-func">Trả lời</a>
+            </div>
+            {% if item.viewReply %}
+            <a href="#" class="view-all-reply">
+                <span>Ẩn câu trả lời</span>
+                <i class="icon ic-go-up"></i>
+            </a>
+
+            <div class="comment-reply-list-wrapper">
+                <ul class="list-comment list-comment-reply">
+                    {% for subItem in item.replyData %}
+                    <li class="comment-item">
+                        <a href="#" target="_blank" rel="nofollow" class="medium-circle-card comment-avatar">
+                            <img src="{{subItem.avatarUrl}}" alt="" />
+                        </a>
+                        <div class="post-comment">
+                            <a href="#" class="username">
+                                {{subItem.fullName}}
+                                <span class="reply-ago-time">{{subItem.commentedTime}}</span>
+                            </a>
+                            <p class="content">
+                                {{subItem.content}}
+                            </p>
+                            <div class="func-comment">
+                                <a href="javascript:void(0)">
+                                    <i class="icon ic-like-other"></i>{{subItem.liked}}
+                                </a>
+                                <a href="javascript:void(0)">
+                                    <i class="icon ic-dislike-other"></i>0
+                                </a>
+                                <a href="#" class="reply-func">Trả lời</a>
+                            </div>
+                            {% if subItem.replyNum > 0 %}
+                            <a href="#" class="view-all-reply">
+                                <span>Xem tất cả {{subItem.replyNum}} câu trả lời</span>
+                                <i class="icon ic-go-down"></i>
+                            </a>
+                            {% endif %}
+
+                            {% if subItem.openReplyForm %}
+                            <form id="frm-reply" class="frm-reply" action="#" method="POST">
+                                <div class="comment-input-wrapper">
+                                    <div class="comment-avatar">
+                                        <a href="#" class="medium-circle-card">
+                                            <img src="./images/oval-2-copy.jpg" alt="" />
+                                        </a>
+                                    </div>
+                                    <div class="text-input-wrapper">
+                                        <input type="text" placeholder="Nhập bình luận của bạn…" class="text-input" />
+                                    </div>
+                                </div>
+                                <div class="btn-actions-wrapper">
+                                    <button type="button" class="btn-comment btn-cancel z-btn z-btn-white">ĐỂ SAU</button>
+                                    <button type="submit" class="btn-comment btn-submit z-btn z-btn-shadow">BÌNH LUẬN</button>
+                                </div>
+                            </form>
+                            {% endif %}
+                        </div>
+                        <span class="comment-extra-actions">
+                            <i class="icon ic-more"></i>
+                        </span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            {% if item.replyNum > 0 and item.viewReply == false %}
+            <a href="#" class="view-all-reply">
+                <span>Xem tất cả {{item.replyNum}} câu trả lời</span>
+                <i class="icon ic-go-down"></i>
+            </a>
+            {% endif %}
+
+            {% if item.openReplyForm %}
+            <form id="frm-reply" class="frm-reply" action="#" method="POST">
+                <div class="comment-input-wrapper">
+                    <div class="comment-avatar">
+                        <a href="#" class="medium-circle-card">
+                            <img src="./images/oval-2-copy.jpg" alt="" />
+                        </a>
+                    </div>
+                    <div class="text-input-wrapper">
+                        <input type="text" placeholder="Nhập bình luận của bạn…" class="text-input" />
+                    </div>
+                </div>
+                <div class="btn-actions-wrapper">
+                    <button type="button" class="btn-comment btn-cancel z-btn z-btn-white">ĐỂ SAU</button>
+                    <button type="submit" class="btn-comment btn-submit z-btn z-btn-shadow">BÌNH LUẬN</button>
+                </div>
+            </form>
+            {% endif %}
+        </div>
+        <span class="comment-extra-actions">
+            <i class="icon ic-more"></i>
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% endmacro %}
+
+
+{% 
+    set sortingItems = [
+        {
+            title: 'Bình luận nổi bật'
+        },
+        {
+            title: 'Bình luận mới nhất'
+        }
+    ]
+ %}
+{% macro sortingBlock(sortingOptions = sortingItems, customClassDropList = 'sort-comment') %}
+<div class="sorting-block-wrapper clearfix">
+    <div class="sorting-direction-wrapper">
+        <a href="#" class="active-sorting-direction">
+            <i class="icon ic-options-other"></i>
+        </a>
+        <ul class="sorting-direction" style="display: none">
+            <li>
+                <i class="icon ic-options-other"></i>
+            </li>
+        </ul>
+    </div>
+    <div class="sorting-by-wrapper">
+        <div class="active-sorting">
+            {{sortingOptions[0].title}}
+            <i class="icon ic-go-down"></i>
+        </div>
+        {{menuFn.dropdown_menu_list(sortingOptions, customClassDropList)}}
+    </div>
+</div>
+{% endmacro %}
+
+{% macro commentBlock(commentData=commentSampleData) %}
+<div class="comment-wrapper">
+    <div class="comment-header clearfix">
+        <div class="comment-total">
+            119 Bình luận
+        </div>
+        {{sortingBlock()}}
+    </div>
+</div>
+
+<div class="comment-input-wrapper">
+    <div class="comment-avatar">
+        <a href="#" class="medium-circle-card">
+            <img src="./images/oval-2-copy.jpg" alt="" />
+        </a>
+    </div>
+    <div class="text-input-wrapper">
+        <input type="text" placeholder="Nhập bình luận của bạn…" class="text-input" />
+    </div>
+</div>
+
+<div class="comment-list-wrapper">
+    {{commentList(commentData)}}
+</div>
+{% endmacro %}
+
+{%
+    set bigPlayerCardConfig = {
+        customClass: '',
+        imgUrl: './images/thumb-mv.jpg',
+        iconClass: 'ic-play-circle-outline',
+        title: '',
+        artistName: ''
+    }
+%}
+{% macro bigPlayerCard(config=bigPlayerCardConfig) %}
+<div class="big-card-player-box big-card-169 {{config.customClass}}">
+    <a href="javascript:void(0)">
+        <img src="{{config.imgUrl}}" alt="" />
+        <i class="icon {{config.iconClass}}"></i>
+    </a>
+    {% if config.title %}
+    <div class="title">
+        <a href="javascript:void(0)">{{config.title}}</a>
+    </div>
+    {% endif %}
+    {% if config.artistName %}
+    <div class="artist-name">
+        <a href="javascript:void(0)">{{config.artistName}}</a>
+    </div>
+    {% endif %}
+</div>
+{% endmacro %}
+
+{%
+    set infoBannerBoxConfig = {
+        blurImgUrl: '/images/cover-blur-bg.jpg',
+        imgUrl: './images/rectangle-21.jpg',
+        ranking: 'No.1 #zingchart',
+        title: 'Back To Teen Pop',
+        artists: ['ERIK', 'MIN'],
+        categories: ['Việt Nam', 'nhạc trẻ'],
+        authors: ['SanLee'],
+        albums: ['Lala OST']
+    }
+%}
+{% macro infoBannerBox(data=infoBannerBoxConfig) %}
+    <section class="info-banner-box">
+        <div class="container">
+            <div class="blur-container" style="background-image: url({{data.blurImgUrl}})"></div>
+            <div class="sub-container clearfix">
+                <a href="#" class="medium-card-11">
+                    <img src="{{data.imgUrl}}" alt="" />
+                    <i class="icon ic-play-circle"></i>
+                </a>
+                <div class="info-banner-body clearfix">
+                    <div class="left-info">
+                        {% if data.ranking %}
+                        <div class="ranking">{{data.ranking}}</div>
+                        {% endif %}
+
+                        <h3>{{data.title}}</h3>
+                        {% if data.artists %}
+                        <div class="artist-name">
+                            {% for artist in data.artists %}
+                                <a href="#">{{artist}}</a> {{', ' if not loop.last}}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% if data.categories %}
+                        <div class="subtext category">
+                            Thể loại: 
+                            {% for cate in data.categories %}
+                                <a class="cate-name" href="#">{{cate}}</a> {{', ' if not loop.last}}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% if data.authors %}
+                        <div class="subtext release">
+                            Sáng tác:
+                            {% for author in data.authors %}
+                                <a href="#">{{author}}</a> {{', ' if not loop.last}}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% if data.albums %}
+                        <div class="subtext release">
+                            Album:
+                            {% for album in data.albums %}
+                                <a href="#">{{album}}</a> {{', ' if not loop.last}}
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                        {% if data.release %}
+                        <div class="subtext release">
+                            Phát hành:
+                            {{data.release}}
+                        </div>
+                        {% endif %}
+                        {% if data.desc %}
+                            <div class="desc">
+                                {{data.desc}}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="right-info">
+                        {% include "components/social-share.njk" %}
+
+                        {% include "components/user-trend-stats.njk" %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endmacro %}
+
+{% macro banner_1024_220(bannerUrl='./images/bg-player-song.jpg') %}
+<section class="banner-1024-220">
+    <div class="container">
+        <div class="row">
+            <img class="img" src="{{bannerUrl}}" alt="">
+        </div>
+    </div>
+</section>
+{% endmacro %}
+
+{%
+    set artistProfileConfig = {
+        avatar: './images/oval-2-copy.jpg',
+        name: 'Sơn Tùng M-TP',
+        followedNum: '998,012',
+        actions: {
+            play: {
+                show: true,
+                icon: 'ic-play',
+                text: 'NGHE NGAY'
+            },
+            follow: {
+                show: true,
+                text: 'ĐÃ THEO DÕI 911K'
+            }
+        }
+    }
+%}
+{% macro artist_profile(config = artistProfileConfig) %}
+<div class="artist-profile clearfix">
+    <div class="medium-circle-card">
+        <a href="javascript:void(0)">
+            <img src="{{config.avatar}}" alt="" />
+        </a>
+    </div>
+    <div class="artist-info">
+        <div class="artist-name">
+            <a href="javascript:void(0)">{{config.name}}</a>
+        </div>
+        <div class="followed-people">
+            {{config.followedNum}} người theo dõi
+        </div>
+    </div>
+    <div class="actions">
+        {% for key, action in config.actions %}
+            {% if action.show %}
+                <a href="#" class="z-btn z-btn-2x z-btn-shadow">
+                    {% if action.icon %}
+                        <i class="icon {{action.icon}}"></i>
+                    {% endif %}
+                    {{action.text}}
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+{% endmacro %}
+
+{%
+    set inputGroupConfig = {
+        customCls: 'header-search-group',
+        iconCls: 'ic-search',
+        placeholderText: 'Nhập tên bài hát, ca sĩ hoặc video…'
+    }
+%}
+{% macro input_group(config=inputGroupConfig) %}
+<div class="z-input-group {{config.customCls}}">
+    <label>
+        <i class="icon {{config.iconCls}}"></i>
+        <div class="input-wrapper">
+            <input type="text" class="form-control" placeholder="{{config.placeholderText}}" />
+        </div>
+    </label>
+</div>
+{% endmacro %}
+
+{%
+    set artistSectionConfig = {
+        title: 'Nghệ Sĩ Nổi Bật',
+        items: [
+            [
+                {
+                    imgUrl: 'images/cover210.png',
+                    artist: 'Son Tung'
+                },
+                {
+                    imgUrl: 'https://zmp3-photo.zadn.vn/thumb/240_240/avatars/4/3/43d8be33dc00a33132c82adb9d0d3a54_1509355224.jpg',
+                    artist: 'Nguyễn Trần Trung Quân'
+                },
+                {
+                    imgUrl: 'images/cover210.png',
+                    artist: 'Soobin Hoàng Sơn'
+                },
+                {
+                    imgUrl: 'images/cover210.png',
+                    artist: 'The Chainsmokers'
+                }
+            ],
+            [
+                {
+                    imgUrl: 'images/cover210.png',
+                    artist: 'Son Tung'
+                },
+                {
+                    imgUrl: 'images/cover210.png',
+                    artist: 'Nguyễn Trần Trung Quân'
+                },
+                {
+                    imgUrl: 'images/cover210.png',
+                    artist: 'Soobin Hoàng Sơn'
+                },
+                {
+                    imgUrl: 'images/cover210.png',
+                    artist: 'The Chainsmokers'
+                }
+            ],
+            [
+                {
+                    imgUrl: 'images/cover210.png',
+                    artist: 'Son Tung'
+                },
+                {
+                    imgUrl: 'images/cover210.png',
+                    artist: 'Nguyễn Trần Trung Quân'
+                },
+                {
+                    imgUrl: 'images/cover210.png',
+                    artist: 'Soobin Hoàng Sơn'
+                },
+                {
+                    imgUrl: 'images/cover210.png',
+                    artist: 'The Chainsmokers'
+                }
+            ]
+        ]
+    }
+%}
+{% macro artist_section(config=artistSectionConfig) %}
+<section class="z-artist">
+    <div class="container">
+        <div class="sub-container z-widget">
+            <div class="row">
+                <div class="col">
+                    <a href="#" class="z-box-title">
+                        {{config.title}}
+                        <i class="icon ic-go-right"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 box-slide">
+                    <div id="z-slidersel-artists" class="z-slidersel slide">
+                        <ol class="z-slidersel-indicators">
+                            <li class="active"></li>
+                            <li></li>
+                            <li></li>
+                        </ol>
+                        <div class="z-slidersel-inner">
+                            {% for item in config.items %}
+                            <div class="z-slidersel-item {{'active' if loop.first}}">
+                                <div class="row">
+                                    {% for subItem in item %}
+                                    <div class="col-md-3">
+                                      {{cardSongs.card_song_210(subItem, 'highlight', false)}}
+                                    </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <a class="z-slidersel-control-prev" role="button">
+                            <i class="icon ic-go-left"></i>
+                        </a>
+                        <a class="z-slidersel-control-next" role="button">
+                            <i class="icon ic-go-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endmacro %}
+
+{%
+    set dropdownTableMenuData = [
+        [
+            {
+                id: 1,
+                title: 'Tất cả thể loại'
+            },
+            {
+                id: 1,
+                title: 'Nhạc Trẻ'
+            },
+            {
+                id: 1,
+                title: 'Nhạc Trữ Tình'
+            },
+            {
+                id: 1,
+                title: 'Nhạc Dance'
+            },
+            {
+                id: 1,
+                title: 'Rock Việt'
+            },
+            {
+                id: 1,
+                title: 'Rap / Hip Hop Việt'
+            },
+            {
+                id: 1,
+                title: 'Nhạc Trịnh'
+            }
+        ],
+        [
+            {
+                id: 1,
+                title: 'Nhạc Thiếu Nhi'
+            },
+            {
+                id: 1,
+                title: 'Nhạc Cách Mạng'
+            },
+            {
+                id: 1,
+                title: 'Nhạc Quê Hương'
+            },
+            {
+                id: 1,
+                title: 'Nhạc Không Lời'
+            },
+            {
+                id: 1,
+                title: 'Nhạc Phim'
+            },
+            {
+                id: 1,
+                title: 'Cải Lương'
+            }
+        ]
+    ]
+%}
+{% macro dropdown_table_menu(config=dropdownTableMenuData) %}
+<div class="z-dropdown-table-menu z-tbl-width-col-{{dropdownTableMenuData.length}} clearfix">
+    {% for item in config %}
+    <div class="z-tbl-col">
+        <ul class="menu-list">
+            {% for subItem in item %}
+            <li class="menu-item">
+                <a href="#" title="{{subItem.title}}">{{subItem.title}}</a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
+</div>
+{% endmacro %}
